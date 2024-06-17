@@ -1,0 +1,41 @@
+Objetivo:
+Desenvolvimento em grupo, utilizando a linguagem PROLOG, de base de conhecimento que
+armazene informações sobre diferentes animais e suas características, além de um conjunto de
+consultas que serão respondidas a partir da base desenvolvida.
+
+Requisitos:
+1. (6 pontos) Base de Conhecimento:
+A implementação da base de conhecimento deve consistir em fatos e regras capazes de
+representar as características animais abaixo:
+• Classe: Mamífero, Ave, Réptil, Peixe, Anfíbio.
+• Tipo de Dieta: Carnívoro, Herbívoro, Onívoro.
+• Habitat: Floresta, Savana, Deserto, Água Marinha, Água Doce.
+• Reprodução: Ovíparo, Vivíparo.
+A base deve conter PELO MENOS quinze animais diferentes e PELO MENOS um indivíduo
+para cada um dos valores das características acima. Embora este seja o mínimo de características
+necessárias na implementação, você é livre para incrementar estes conjuntos com mais valores
+ou mesmo para adicionar novas características.
+Exemplo de animais:
+• Leão: Dieta carnívora, Habitat savana, Classe mamífero, Reprodução vivíparo.
+• Tubarão Martelo: Dieta carnívora, Habitat água marinha, Classe peixe, Reprodução
+vivíparo.
+2. (4 pontos) Consultas:
+o Você deve escrever as questões abaixo como consultas em PROLOG (A base de
+conhecimento implementada deve ser capaz de responder as consultas):
+1. (0.35 Ponto) Qual é o habitat de um animal específico X?
+2. (0.35 Ponto) O animal específico Y é um mamífero?
+3. (0.35 Ponto) Quais são todos os animais carnívoros?
+4. (0.35 Ponto) Quais são todos os animais vivem na floresta?
+5. (0.35 Ponto) Quais os tipos de dietas dos animais que vivem na savana?
+6. (0.35 Ponto) Existe algum animal ovíparo que vive em água salgada?
+7. (0.35 Ponto) Existe algum animal mamífero que é ovíparo?
+8. (0.35 Ponto) Existe algum animal carnívoro que viva em água doce?
+9. (0.6 Ponto) Quais são os animais terrestres herbívoros?
+10. (0.6 Ponto) Quais animais voam e comem carne?
+Recomenda-se que sejam implementadas regras na base de conhecimento que facilitem as
+consultas requisitadas!
+Avaliação:
+A avaliação será baseada nos seguintes critérios:
+• Correção e completude da base de conhecimento.
+• Clareza e funcionalidade das consultas.
+• Organização e clareza do código
