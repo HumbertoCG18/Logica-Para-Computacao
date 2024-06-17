@@ -1,14 +1,14 @@
 ##Animais 
-animal(leao).
-animal(tubarao).
-animal(pinguim).
-animal(macaco).
-animal(baleia).
-animal(lobo).
-animal(gaviao).
-animal(sapo).
-animal(lagarto).
-animal(urso).
+animal(leao). ##Mamifero
+animal(tubarao). ##Peixe
+animal(pinguim). ##Aves
+animal(macaco). ##Mamifero
+animal(baleia). ##Mamifero
+animal(lobo). ##Mamifero
+animal(gaviao).  ##Aves
+animal(sapo). ##Anphibia
+animal(lagarto). ##Réptil
+animal(urso). ##Mamifero
 
 
 ##Classes 
@@ -23,7 +23,8 @@ classe(sapo,anphibia).
 classe(lagarto,reptil).
 classe(urso,mamifero).
 
-habitat(leao,)
+
+##Habitat
 
 
 
