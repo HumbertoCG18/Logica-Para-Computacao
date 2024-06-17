@@ -1,5 +1,7 @@
 % Base de Conhecimento
 
+% animal(nome,classe,alimntacao,habitat,desenvolvimeno)
+
 % Animais e suas características
 animal(leao, mamifero, carnivoro, savana, viviparo).
 animal(tubarao_martelo, peixe, carnivoro, agua_marinha, viviparo).
