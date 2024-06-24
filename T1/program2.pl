@@ -88,8 +88,8 @@ reproducao(viviparo, raposa).
 % Regras para consultas
 
 % 1. Qual é o habitat de um animal específico X?
-habitat_de_animal(X, Resultados) :-
-    findall((X, Habitat), habitat(Habitat, X), Resultados).
+habitat_de_animal(X, Habitat) :-
+    habitat(Habitat, X), !.
 
 % 2. O animal específico Y é um mamífero?
 e_mamifero(Y) :-
