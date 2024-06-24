@@ -85,68 +85,45 @@ reproducao(viviparo, urso).
 reproducao(oviparo, pato).
 reproducao(viviparo, raposa).
 
-% Regras para consultas
+% Regras
+
+animal_carnivoro(Animal) :- animal(Animal), dieta(carnivoro, Animal).
+animais_vivem_floresta(Animal) :- animal(Animal), habitat(floresta, Animal).
+dietas_animais_savana(Animal, Dieta) :- animal(Animal), habitat(savana, Animal), dieta(Dieta, Animal).
+existe_oviparo_agua_salgada(Existe, Animal) :- habitat(agua_marinha, Animal), reproducao(oviparo, Animal) -> Existe = sim ; Existe = nao.
+existe_mamifero_oviparo(Existe, Animal) :- classe(mamifero, Animal), reproducao(oviparo, Animal) -> Existe = sim ; Existe = nao.
+existe_carnivoro_aguaDoce(Existe, Animal) :- habitat(agua_doce, Animal), dieta(carnivoro, Animal) -> Existe = sim ; Existe = nao.
+animais_terrestres_herbivoros(Animal) :- animal(Animal), dieta(herbivoro, Animal), habitat(Habitat, Animal), Habitat \= agua_marinha, Habitat \= agua_doce.
+voadores_carnivoros(Animal) :- animal(Animal), classe(ave, Animal), dieta(carnivoro, Animal), Animal \= pinguim.
+
+% Consultas
+
 % 1. Qual é o habitat de um animal específico X?
-% habitat_de_animal(X, Habitat)
+% habitat(Habitat, X).
 
 % 2. O animal específico Y é um mamífero?
-% e_mamifero(Y)
+% classe(mamifero, Y).
 
 % 3. Quais são todos os animais carnívoros?
-% animais_carnivoros(Animais) 
+% animal_carnivoro(Animal).
 
 % 4. Quais são todos os animais que vivem na floresta?
-% animais_na_floresta(Animais)
+% animais_vivem_floresta(Animal).
 
 % 5. Quais os tipos de dietas dos animais que vivem na savana?
-% dietas_na_savana(Dietas)
+% dietas_animais_savana(Animal, Dieta)
 
 % 6. Existe algum animal ovíparo que vive em água salgada?
-% existe_oviparo_em_agua_salgada(Existe, Animais)
+% existe_oviparo_agua_salgada(Existe, Animal)
 
 % 7. Existe algum animal mamífero que é ovíparo?
-% existe_mamifero_oviparo(Existe, Animais)
+% existe_mamifero_oviparo(Existe, Animal)
 
 % 8. Existe algum animal carnívoro que vive em água doce?
-% existe_carnivoro_em_agua_doce(Existe, Animais)
+% existe_carnivoro_aguaDoce(Existe, Animal)
 
 % 9. Quais são os animais terrestres herbívoros?
-% animais_terrestres_herbivoros(Animais)
+% animais_terrestres_herbivoros(Animal)
 
 % 10. Quais animais voam e comem carne?
-% animais_voadores_carnivoros(Animais) 
-
-%------------------------------------------------------%
-habitat_de_animal(X, Habitat) :-
-    habitat(Habitat, X).
-
-e_mamifero(Y) :-
-    classe(mamifero, Y).
-
-animais_carnivoros(Animais) :-
-    findall(X, dieta(carnivoro, X), Animais).
-
-animais_na_floresta(Animais) :-
-    findall(X, habitat(floresta, X), Animais).
-
-dietas_na_savana(Dietas) :-
-    findall(Dieta, (habitat(savana, X), dieta(Dieta, X)), DietasList),
-    list_to_set(DietasList, Dietas).
-
-existe_oviparo_em_agua_salgada(Existe, Animais) :-
-    findall(X, (habitat(agua_marinha, X), reproducao(oviparo, X)), Animais),
-    (Animais \= [] -> Existe = sim ; Existe = nao).
-
-existe_mamifero_oviparo(Existe, Animais) :-
-    findall(X, (classe(mamifero, X), reproducao(oviparo, X)), Animais),
-    (Animais \= [] -> Existe = sim ; Existe = nao).
-
-existe_carnivoro_em_agua_doce(Existe, Animais) :-
-    findall(X, (habitat(agua_doce, X), dieta(carnivoro, X)), Animais),
-    (Animais \= [] -> Existe = sim ; Existe = nao).
-
-animais_terrestres_herbivoros(Animais) :-
-    findall(X, (dieta(herbivoro, X), habitat(Habitat, X), Habitat \= agua_marinha, Habitat \= agua_doce), Animais).
-
-animais_voadores_carnivoros(Animais) :-
-    animal(Animal), classe(ave, Animal), dieta(carnivoro, Animal), Animal \= pinguim.
+% voadores_carnivoros(Animal)
