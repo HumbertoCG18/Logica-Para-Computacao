@@ -17,8 +17,7 @@
 % SEÇÃO 1: FATOS (Base de Conhecimento)
 %-------------------------------------------------------------------------------
 
-% Predicado pokemon(Nome)
-% Define a existência de um Pokémon com um determinado nome.
+% Predicado pokemon(Nome) - Conforme requisito. 
 pokemon(bulbasaur).
 pokemon(ivysaur).
 pokemon(venusaur).
@@ -40,8 +39,7 @@ pokemon(geodude).
 pokemon(graveler).
 pokemon(scyther).
 
-% Predicado tipo(Pokemon, Tipo)
-% Define que um Pokémon pertence a um ou mais tipos.
+% Predicado tipo(Pokemon, Tipo) - Conforme requisito. 
 tipo(bulbasaur, grama).
 tipo(bulbasaur, venenoso).
 tipo(ivysaur, grama).
@@ -67,7 +65,7 @@ tipo(oddish, grama).
 tipo(oddish, venenoso).
 tipo(gloom, grama).
 tipo(gloom, venenoso).
-tipo(bellossom, grama).
+tipo(bellossom, grama). % Perde o tipo 'venenoso' na evolução
 tipo(geodude, pedra).
 tipo(geodude, terrestre).
 tipo(graveler, pedra).
@@ -75,8 +73,7 @@ tipo(graveler, terrestre).
 tipo(scyther, inseto).
 tipo(scyther, voador).
 
-% Predicado evolui(PokemonBase, PokemonEvoluido)
-% Define a linha de evolução de um Pokémon.
+% Predicado evolui(PokemonBase, PokemonEvoluido) - Conforme requisito. 
 evolui(bulbasaur, ivysaur).
 evolui(ivysaur, venusaur).
 evolui(charmander, charmeleon).
@@ -85,11 +82,10 @@ evolui(squirtle, wartortle).
 evolui(wartortle, blastoise).
 evolui(pikachu, raichu).
 evolui(oddish, gloom).
-evolui(gloom, bellossom). % Exemplo para a consulta 8
+evolui(gloom, bellossom). % Exemplo para a consulta 8 e 9
 evolui(geodude, graveler).
 
-% Predicado tamanho(Pokemon, Altura_M, Peso_KG)
-% Define a altura (em metros) e o peso (em quilogramas) de um Pokémon.
+% Predicado tamanho(Pokemon, Altura_M, Peso_KG) - Conforme requisito. 
 tamanho(bulbasaur, 0.7, 6.9).
 tamanho(ivysaur, 1.0, 13.0).
 tamanho(venusaur, 2.0, 100.0).
@@ -111,8 +107,7 @@ tamanho(geodude, 0.4, 20.0).
 tamanho(graveler, 1.0, 105.0).
 tamanho(scyther, 1.5, 56.0).
 
-% Predicado vantagem_contra(TipoAtacante, TipoDefensor)
-% Define que o TipoAtacante tem vantagem sobre o TipoDefensor.
+% Predicado vantagem_contra(TipoAtacante, TipoDefensor) - Conforme requisito. 
 vantagem_contra(eletrico, agua).
 vantagem_contra(eletrico, voador).
 vantagem_contra(agua, fogo).
@@ -134,31 +129,34 @@ vantagem_contra(inseto, grama).
 vantagem_contra(inseto, venenoso).
 
 %-------------------------------------------------------------------------------
-% SEÇÃO 2: REGRAS (Consultas)
+% SEÇÃO 2: REGRAS (Consultas) - Conforme requisitos. 
 %-------------------------------------------------------------------------------
-%Para usar as regras, pegue o nome da regra sem o " :-" e consulte.
 %Consultas:
 %1. pokemon_por_tipo_acima_do_peso(Pokemon, Tipo)
 %2. pokemon_que_evolui_e_baixo(Pokemon)
 %3. vantagem_contra_pokemon(PokemonX, Oponente)
-%4. pokemon_sem_evolucao_por_tipo(Pokemon, Tipo)
+%4. pokemon_sem_evolucao_por_tipo(Pokemon, Tipo) 
 %5. pokemon_duplo_tipo_leve(Pokemon, Tipo1, Tipo2, PesoMax)
 %6. evolucao_de_tipo_planta(Evolucao)
-%7. pokemon_alto_com_vantagem_a_fogo(Pokemon) 
+%7. pokemon_alto_com_vantagem_a_fogo(Pokemon)
 %8. evolucao_para_menor_e_mais_leve(Pokemon)
-%9. evolucao_com_mudanca_de_tipo(Pokemon) 
+%9. evolucao_com_perda_de_tipo(Pokemon)
 %10. pokemon_sem_evolucao_com_desvantagem_a_pedra(Pokemon)
 
+
+% 1. Quais Pokémons do tipo X possuem peso maior que 5 kg? 
 pokemon_por_tipo_acima_do_peso(Pokemon, Tipo) :-
     tipo(Pokemon, Tipo),
     tamanho(Pokemon, _, Peso),
     Peso > 5.
-    
+
+% 2. Quais Pokémons que evoluem para algum outro Pokémon têm altura menor que 1 metro? 
 pokemon_que_evolui_e_baixo(Pokemon) :-
     evolui(Pokemon, _),
     tamanho(Pokemon, Altura, _),
     Altura < 1.
-    
+
+% 3. Contra quais Pokémons o Pokémon X tem vantagem? 
 vantagem_contra_pokemon(PokemonX, Oponente) :-
     pokemon(PokemonX),
     pokemon(Oponente),
@@ -167,40 +165,48 @@ vantagem_contra_pokemon(PokemonX, Oponente) :-
     tipo(Oponente, TipoDefensor),
     vantagem_contra(TipoAtacante, TipoDefensor).
 
+% 4. Quais Pokémons do tipo X não evoluem para nenhum outro Pokémon?
 pokemon_sem_evolucao_por_tipo(Pokemon, Tipo) :-
     tipo(Pokemon, Tipo),
     \+ evolui(Pokemon, _).
 
+% 5. Quais Pokémons do tipo X e tipo Y (duplo tipo) têm peso inferior a W? 
 pokemon_duplo_tipo_leve(Pokemon, Tipo1, Tipo2, PesoMax) :-
     tipo(Pokemon, Tipo1),
     tipo(Pokemon, Tipo2),
-    Tipo1 \= Tipo2,
+    Tipo1 @< Tipo2, % Garante que os tipos são diferentes e evita respostas duplicadas
     tamanho(Pokemon, _, Peso),
     Peso < PesoMax.
-    
+
+% 6. Quais Pokémons que evoluem de um Pokémon do tipo planta? 
 evolucao_de_tipo_planta(Evolucao) :-
     evolui(PokemonBase, Evolucao),
     tipo(PokemonBase, grama).
-    
+
+% 7. Quais Pokémons possuem tipo que tem vantagem contra fogo e têm altura superior a 1.5 metros? 
 pokemon_alto_com_vantagem_a_fogo(Pokemon) :-
     tamanho(Pokemon, Altura, _),
     Altura > 1.5,
     tipo(Pokemon, Tipo),
     vantagem_contra(Tipo, fogo).
-    
+
+% 8. Quais Pokémons evoluem para outro Pokémon que possui altura e peso menores? 
 evolucao_para_menor_e_mais_leve(Pokemon) :-
     evolui(Pokemon, Evolucao),
     tamanho(Pokemon, AlturaBase, PesoBase),
     tamanho(Evolucao, AlturaEvolucao, PesoEvolucao),
     AlturaEvolucao < AlturaBase,
     PesoEvolucao < PesoBase.
-    
-evolucao_com_mudanca_de_tipo(Pokemon) :-
+
+% 9. Quais Pokémons evoluem para outro que PERDE um tipo do original? 
+evolucao_com_perda_de_tipo(Pokemon) :-
     evolui(Pokemon, Evolucao),
-    tipo(Evolucao, TipoNovo),
-    \+ tipo(Pokemon, TipoNovo).
-    
+    tipo(Pokemon, TipoAntigo), % Pega um tipo do Pokémon original
+    \+ tipo(Evolucao, TipoAntigo). % Verifica se a evolução NÃO tem mais esse tipo
+
+% 10. Quais Pokémons não evoluem e têm tipo que sofre desvantagem contra o tipo pedra? 
 pokemon_sem_evolucao_com_desvantagem_a_pedra(Pokemon) :-
+    pokemon(Pokemon), % Garante que estamos tratando de um Pokémon válido
     \+ evolui(Pokemon, _),
-    tipo(Pokemon, Tipo),
-    vantagem_contra(pedra, Tipo).                            
+    tipo(Pokemon, TipoDefensor),
+    vantagem_contra(pedra, TipoDefensor).
