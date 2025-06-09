@@ -9,6 +9,7 @@
 % tamanho (altura e peso) e vantagens de tipo.
 %
 % Autores: [Humberto Corrêa], [Matheus Locatelli].
+% Data: [09.06.2025]
 %
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -136,7 +137,17 @@ vantagem_contra(inseto, venenoso).
 % SEÇÃO 2: REGRAS (Consultas)
 %-------------------------------------------------------------------------------
 %Para usar as regras, pegue o nome da regra sem o " :-" e consulte.
-
+%Consultas:
+%1. pokemon_por_tipo_acima_do_peso(Pokemon, Tipo)
+%2. pokemon_que_evolui_e_baixo(Pokemon)
+%3. vantagem_contra_pokemon(PokemonX, Oponente)
+%4. pokemon_sem_evolucao_por_tipo(Pokemon, Tipo)
+%5. pokemon_duplo_tipo_leve(Pokemon, Tipo1, Tipo2, PesoMax)
+%6. evolucao_de_tipo_planta(Evolucao)
+%7. pokemon_alto_com_vantagem_a_fogo(Pokemon) 
+%8. evolucao_para_menor_e_mais_leve(Pokemon)
+%9. evolucao_com_mudanca_de_tipo(Pokemon) 
+%10. pokemon_sem_evolucao_com_desvantagem_a_pedra(Pokemon)
 
 pokemon_por_tipo_acima_do_peso(Pokemon, Tipo) :-
     tipo(Pokemon, Tipo),
@@ -155,7 +166,6 @@ vantagem_contra_pokemon(PokemonX, Oponente) :-
     tipo(PokemonX, TipoAtacante),
     tipo(Oponente, TipoDefensor),
     vantagem_contra(TipoAtacante, TipoDefensor).
-
 
 pokemon_sem_evolucao_por_tipo(Pokemon, Tipo) :-
     tipo(Pokemon, Tipo),
