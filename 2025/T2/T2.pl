@@ -39,7 +39,7 @@ pokemon(bellossom).
 pokemon(geodude).
 pokemon(graveler).
 pokemon(scyther).
-pokemon(magmar). % Adicionado
+pokemon(magmar).
 
 % Predicado tipo(P, T) - Declara que o Pokémon P é do tipo T. 
 tipo(bulbasaur, grama).
@@ -74,7 +74,7 @@ tipo(graveler, pedra).
 tipo(graveler, terrestre).
 tipo(scyther, inseto).
 tipo(scyther, voador).
-tipo(magmar, fogo). % Adicionado
+tipo(magmar, fogo).
 
 % Predicado evolui(P, E) - Declara que o Pokémon P evolui para E. 
 evolui(bulbasaur, ivysaur).
@@ -109,7 +109,7 @@ tamanho(bellossom, 0.4, 5.8).
 tamanho(geodude, 0.4, 20.0).
 tamanho(graveler, 1.0, 105.0).
 tamanho(scyther, 1.5, 56.0).
-tamanho(magmar, 1.3, 44.5). % Adicionado
+tamanho(magmar, 1.3, 44.5).
 
 % Predicado vantagem_contra(T1, T2) - Declara que o tipo T1 tem vantagem contra o tipo T2. 
 vantagem_contra(eletrico, agua).
