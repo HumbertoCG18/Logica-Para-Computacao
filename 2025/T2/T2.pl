@@ -135,18 +135,6 @@ vantagem_contra(inseto, venenoso).
 %-------------------------------------------------------------------------------
 % SEÇÃO 2: REGRAS (Consultas) - Conforme requisitos. 
 %-------------------------------------------------------------------------------
-%Consultas:
-%1.  pokemon_por_tipo_acima_do_peso(Pokemon, Tipo)
-%2.  pokemon_que_evolui_e_baixo(Pokemon)
-%3.  vantagem_contra_pokemon(PokemonX, Oponente)
-%4.  pokemon_sem_evolucao_por_tipo(Pokemon, Tipo) 
-%5.  pokemon_duplo_tipo_leve(Pokemon, Tipo1, Tipo2, PesoMax)
-%6.  evolucao_de_tipo_planta(Evolucao)
-%7.  pokemon_alto_com_vantagem_a_fogo(Pokemon)
-%8.  evolucao_para_menor_e_mais_leve(Pokemon)
-%9.  evolucao_com_perda_de_tipo(Pokemon)
-%10. pokemon_sem_evolucao_com_desvantagem_a_pedra(Pokemon)
-
 
 % 1. Quais Pokémons do tipo X possuem peso maior que 5 kg? 
 pokemon_por_tipo_acima_do_peso(Pokemon, Tipo) :-
